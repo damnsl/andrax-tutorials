@@ -50,6 +50,6 @@ IN | IN/PCRF | PCRF
 RAN Firewall | RAN Firewall | SeGW
 
 ### LTE User Connection
-![LTE User con](/mobile-network/imgs/userconlte.jpg)
+![LTE User con](/mobile-network/imgs/userconlte.png)
 
 
