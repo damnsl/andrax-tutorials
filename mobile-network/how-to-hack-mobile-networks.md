@@ -49,7 +49,96 @@ SGSN | SGSN | MME/SGW
 IN | IN/PCRF | PCRF
 RAN Firewall | RAN Firewall | SeGW
 
-### LTE User Connection
+### LTE and 3G User Connection
+
 ![LTE User con](/mobile-network/imgs/userconlte.png)
 
 ![LTE System Arch](/mobile-network/imgs/ltesystemarch02.png)
+
+  E-UTRAN consists of eNodeBs (i.e., base
+  stations).
+  
+  It manages the radio communication between
+  eNodeB and UE and facilitates communication
+  between the UE and EPC
+  
+  S-GW: All user IP packets are transferred through the S-GW,
+  which serves as the local mobility anchor when the UE moves
+  between eNodeBs.
+  
+  P-GW: The PDN (packet data network) Gateway is responsible for
+  IP address allocation for the UE, QoS enforcement and flow-based charging.
+  
+## But how to hack a mobile network?
+
+There are hundreds of possibilities, many flaws, many types of attacks. 
+
+### What i need to hack a mobile network, some hardware?
+
+* A Android smartphone
+* The most complete penetration testing platform (**ANDRAX**)
+
+Wait a minute ... just need my smartphone and ANDRAX to do this?
+
+Yeah!
+
+A smartphone is a transceiver, and already comes with all the necessary hardware, thanks to the technology of the new networks and the powerful Linux environment in Android we can access the STACK of the protocols and put these networks in our hands!
+
+### 3G/4G STACK Blocks on Android devices
+
+Everything in Linux is file, to access the interfaces of the modems in Android we have to access the "block devices" located in /dev
+
+![3G/4G Dev blocks](/mobile-network/imgs/andraxdevblocks.jpg)
+
+For example in my device we can see ours TTY to SCOMM with chipset, in pts dir we have our umts modem SCOMM too.
+
+Using these SCOMM blocks we can elevate the STACK to inject protocols flaws.
+
+### The first step to hack a mobile network
+
+First use the "simplest" attack which is very complex, attack based on internal routing failure on NodeB or ENodeB.
+
+To do this we have to disconnect our WiFi network and raise the mobile network interface which in Android is called "rmnet"
+
+![rmnet Android](/mobile-network/imgs/andraxrmnet.jpg)
+
+We can see that in my case I am connected in ENodeB with ip 10.117.200.51 and mask 255.255.255.0, that is, my network block is from 10.117.200.1 to 10.117.200.254
+
+To list the possible breakpoints on this network I have to use nmap. but with very delicate parameters because the SeGW firewall is very violent and one of the best designed structures to identify scanners!
+
+Maybe -T1 can help you!
+
+We will use some of these active devices in the same netblock to jump out of that gateway and enter the SIGTRAN or DIAMETER if you are in a very old (2G) network in the SS7
+
+#### SigPloit Framework
+
+![SigPloit ANDRAX](/mobile-network/imgs/andraxsigploit.jpg)
+
+With SigPloit framewrok we can do some SIGNALING hacks but not something advanced like do it by our hands, SigPloit is included on ANDRAX and it is good to you start learn a bit about SIGNALING hacks. Combined with others attacks this can be very dangerous!
+
+### Major attacks on mobile networks
+
+* Routing failures
+* SIGNALING Attacks
+* HLR/HSS Injection
+* HLR/HSS Poisoning
+* PTP Flood
+* EPC Hijack
+* DIAMETER Fuzzing
+* EPC DNS Spoof
+* EPC DNS Recache
+
+## What we can do hacking a mobile network?
+
+* Free internet :)
+* Control data
+* Spoof data
+* Hijack data
+* Put users in a botnet
+* DoS
+* Clone clients
+* ... The possibilities are endless!
+
+That's all for today! If you would like a series of practical classes on mobile networks hacking enroll in our [Hacking training with ANDRAX](http://androidhacking.thecrackertechnology.com/)
+
+Until next time, bye!
