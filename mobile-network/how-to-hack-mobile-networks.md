@@ -52,4 +52,4 @@ RAN Firewall | RAN Firewall | SeGW
 ### LTE User Connection
 ![LTE User con](/mobile-network/imgs/userconlte.png)
 
-![LTE User con](/mobile-network/imgs/ltesystemarch.png)
+![LTE User con](/mobile-network/imgs/ltesystemarch02.png)
